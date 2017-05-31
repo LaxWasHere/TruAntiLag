@@ -5,11 +5,13 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 
 /**
@@ -17,7 +19,7 @@ import java.util.logging.Level;
  */
 public class TruAntiLag extends JavaPlugin {
 
-    public ArrayList<String> a = new ArrayList<String>();
+    private ArrayList<String> a = new ArrayList<String>();
 
     public void onEnable() {
         loadBlacklist();
@@ -31,16 +33,33 @@ public class TruAntiLag extends JavaPlugin {
     }
 
     public void loadBlacklist() {
-        for (String s : getBlacklistconfig().getKeys(false)) {
+        for (String s : getBlacklistconfig().getConfigurationSection("name").getKeys(false)) {
             a.add(s.toLowerCase());
+        }
+        for (String s : getBlacklistconfig().getConfigurationSection("authors").getKeys(false)) {
+            a.add(s.toLowerCase());
+        }
+        for (String s : getBlacklistconfig().getConfigurationSection("mains").getKeys(false)) {
+            a.add(s.replace("+",".").toLowerCase());
         }
     }
 
     public void disableLag() {
         for (Plugin p : Bukkit.getPluginManager().getPlugins()) {
-            if (a.contains(p.getName().toLowerCase())) {
+            PluginDescriptionFile pds = p.getDescription();
+
+            if (a.contains(pds.getName().toLowerCase()) && p.isEnabled()) {
                 Bukkit.getPluginManager().disablePlugin(p);
-                getLogger().log(Level.WARNING, "Disabled " + p.getName() + " for causing lag");
+            }
+
+            if(a.contains(pds.getMain()) && p.isEnabled()) {
+                Bukkit.getPluginManager().disablePlugin(p);
+            }
+
+            for (String s : pds.getAuthors()) {
+                if (a.contains(s.toLowerCase()) && p.isEnabled()) {
+                    Bukkit.getPluginManager().disablePlugin(p);
+                }
             }
         }
     }
