@@ -23,6 +23,7 @@ public class TruAntiLag extends JavaPlugin {
 
     public void onEnable() {
         loadBlacklist();
+        getLogger().log(Level.WARNING, "Cracked by LaxWasHere@SpigotMC");
         new BukkitRunnable() {
             @Override
             public void run() {
