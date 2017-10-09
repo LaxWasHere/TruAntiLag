@@ -1,0 +1,47 @@
+{
+  "name": {
+    "AntiLag": {
+      "description": "Causes lag"
+    },
+    "Anti-Lag": {
+      "description": "Causes lag"
+    },
+    "LaggRemover": {
+      "description": "Causes lag"
+    },
+    "pTweaks": {
+      "description": "Causes lag"
+    },
+    "NoLagg": {
+      "description": "Causes lag"
+    },
+    "ClearLagg": {
+      "description": "Causes lag"
+    },
+    "React": {
+      "description": "Causes lag"
+    },
+    "ServerAssistant": {
+      "description": "Causes lag"
+    },
+    "MassiveLag": {
+      "description": "Quite literally"
+    }
+  },
+  "authors": {
+    "Qball": {
+      "description": "Spaghetti/stolen codes"
+    },
+    "vk2gpz": {
+      "description": "async non async who gives a shit"
+    },
+    "solmex": {
+      "description": "Plugin malware or some shit"
+    }
+  },
+  "mains": {
+    "org.bukkit.Main": {
+      "description": "ye no"
+    }
+  }
+}
