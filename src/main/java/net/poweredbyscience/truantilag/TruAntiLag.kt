@@ -19,7 +19,7 @@ class TruAntiLag : JavaPlugin() {
     private val a = ArrayList<String>()
 
     private val blacklistConfig by lazy {
-        get("https://raw.githubusercontent.com/LaxWasHere/TruAntiLag/laggers.json").jsonObject.toGson()
+        get("https://raw.githubusercontent.com/LaxWasHere/TruAntiLag/master/laggers.json").jsonObject.toGson()
     }
 
     override fun onEnable() {
