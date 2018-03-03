@@ -40,7 +40,7 @@ class TruAntiLag : JavaPlugin() {
         }.runTaskLater(this, 600) //Make sure all plugins are loaded
         ProxySelector.setDefault(BadDetector(ProxySelector.getDefault()))
         if (!Bukkit.getVersion().contains("git-Paper")) {
-            logger.log(Level.WARNING, "For a TruAntiLag xPerience , use PaperSpigot")
+            logger.log(Level.WARNING, "For a TruAntiLag xPerience , use Paper (https://paper.emc.gs)")
         }
     }
 
