@@ -1,4 +1,4 @@
-package net.poweredbyscience.truantilag
+package net.poweredbyhate.truantilag
 
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
@@ -7,6 +7,7 @@ import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitRunnable
 import org.json.JSONObject
+import java.net.ProxySelector
 import java.util.*
 import java.util.logging.Level
 
@@ -18,11 +19,16 @@ class TruAntiLag : JavaPlugin() {
 
     private val a = ArrayList<String>()
 
+    companion object {
+        lateinit var instance: TruAntiLag
+    }
+
     private val blacklistConfig by lazy {
         get("https://raw.githubusercontent.com/LaxWasHere/TruAntiLag/master/laggers.json").jsonObject.toGson()
     }
 
     override fun onEnable() {
+        instance = this;
         loadBlacklist()
         logger.log(Level.WARNING, "Cracked by LaxWasHere@SpigotMC")
         logger.log(Level.WARNING, "Mega cracked by Redrield@SpigotMC")
@@ -32,7 +38,12 @@ class TruAntiLag : JavaPlugin() {
                 disableLag()
             }
         }.runTaskLater(this, 600) //Make sure all plugins are loaded
+        ProxySelector.setDefault(BadDetector(ProxySelector.getDefault()))
+        if (!Bukkit.getVersion().contains("git-Paper")) {
+            logger.log(Level.WARNING, "For a TruAntiLag xPerience , use PaperSpigot")
+        }
     }
+
 
     private fun loadBlacklist() {
         blacklistConfig["name"].asJsonObject.entrySet().mapTo(a) { (key, _) -> key.toLowerCase() }
@@ -61,4 +72,5 @@ class TruAntiLag : JavaPlugin() {
 
 fun JSONObject.toGson(): JsonObject {
     return JsonParser().parse(toString()).asJsonObject
+
 }
