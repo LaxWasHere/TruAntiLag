@@ -32,6 +32,9 @@
     },
     "EssentialsList": {
       "description": "Malware"
+    },
+    "EscapeLag": {
+      "description": "Causes lag"
     }
   },
   "authors": {
