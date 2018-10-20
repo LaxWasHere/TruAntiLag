@@ -35,6 +35,9 @@
     },
     "EscapeLag": {
       "description": "Causes lag"
+    },
+    "LagAssist": {
+      "description": "Causes lag"
     }
   },
   "authors": {
